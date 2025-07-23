@@ -1,247 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>II Tutions Curriculum Converter</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Times New Roman', 'Georgia', serif;
-            background: #f5f5f0;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* Notebook Paper Container */
-        .notebook-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: 1px solid #e0e0e0;
-            position: relative;
-            padding: 60px 80px 60px 120px;
-            min-height: 800px;
-        }
-
-        /* Notebook Holes */
-        .notebook-holes {
-            position: absolute;
-            left: 25px;
-            top: 80px;
-            bottom: 80px;
-            width: 20px;
-        }
-
-        .hole {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #f8f8f8;
-            border: 1px solid #d0d0d0;
-            margin-bottom: 50px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        /* Blue Margin Line */
-        .margin-line {
-            position: absolute;
-            left: 80px;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: #0066cc;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 10;
-            border-bottom: 2px solid #000;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .main-title {
-            font-size: 2.2rem;
-            color: #000000;
-            margin-bottom: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #333333;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .start-btn {
-            background: #4A90E2;
-            color: white;
-            padding: 12px 30px;
-            border: 2px solid #357ABD;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: 'Times New Roman', serif;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .start-btn:hover {
-            background: #357ABD;
-            transform: translateY(-1px);
-        }
-
-        /* Stats */
-        .stats-box {
-            background: #4A90E2;
-            color: white;
-            padding: 12px 20px;
-            border: 1px solid #357ABD;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            margin-left: 60px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .stats-icon {
-            font-size: 1.5rem;
-        }
-
-        /* Form Sections */
-        .form-section {
-            position: relative;
-            z-index: 10;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: #000000;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #333333;
-            font-size: 1rem;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        /* Reviews Section */
-        .review-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            margin-left: 140px;
-            margin-right: 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .review-card {
-            background: transparent;
-            padding: 0;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            text-align: left;
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .review-icon {
-            font-size: 2rem;
-            margin-right: 12px;
-        }
-
-        .review-author {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 2px;
-        }
-
-        .review-role {
-            font-size: 0.9rem;
-            color: #666666;
-            font-style: italic;
-        }
-
-        .review-content {
-            color: #333333;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            quotes: """ """;
-        }
-
-        .review-content::before {
-            content: open-quote;
-            font-size: 1.5rem;
-            color: #4A90E2;
-            font-weight: bold;
-        }
-
-        .review-content::after {
-            content: close-quote;
-            font-size: 1.5rem;
-            color: #4A90E2;
-            font-weight: bold;
-        }
-
-        .stars {
-            font-size: 1.1rem;
-            color: #ffa500;
-            margin-bottom: 5px;
-        }
-
-        .review-date {
-            color: #888888;
-            font-size: 0.8rem;
-            font-style: italic;
-        }
+/* Replace your existing mobile responsive sections in index.html with these: */
 
         /* Responsive */
         @media (max-width: 768px) {
             .notebook-container {
-                padding: 40px 30px 40px 90px; /* Increased left padding from 60px to 90px */
+                padding: 40px 30px 40px 110px; /* Increased left padding from 90px to 110px */
             }
             
             .main-title {
                 font-size: 1.8rem;
+                margin-left: 0;
+                padding-left: 0;
             }
 
             .subtitle {
@@ -255,17 +23,22 @@
             
             .review-cards {
                 grid-template-columns: 1fr;
-                margin-left: 20px; /* Reduced from 40px to 20px for better spacing */
+                margin-left: 30px; /* Increased from 20px to 30px */
                 margin-right: 20px;
                 gap: 25px;
             }
 
             .stats-box {
-                margin-left: 0;
+                margin-left: 20px; /* Changed from 0 to 20px */
                 justify-content: center;
                 flex-direction: column;
                 text-align: center;
                 gap: 5px;
+            }
+
+            .header {
+                margin-left: 10px; /* Added margin for header */
+                margin-right: 10px;
             }
 
             .review-card {
@@ -300,7 +73,7 @@
 
         @media (max-width: 480px) {
             .notebook-container {
-                padding: 30px 25px 30px 80px; /* Increased left padding from 50px to 80px */
+                padding: 30px 25px 30px 100px; /* Increased left padding from 80px to 100px */
                 margin: 10px;
             }
 
@@ -309,33 +82,40 @@
             }
 
             .review-cards {
-                margin-left: 15px; /* Reduced from 30px to 15px */
-                margin-right: 15px; /* Reduced from 10px to 15px for balance */
+                margin-left: 25px; /* Increased from 15px to 25px */
+                margin-right: 15px;
                 gap: 20px;
             }
 
             .stats-box {
                 font-size: 0.8rem;
                 padding: 10px 15px;
+                margin-left: 15px; /* Added margin instead of 0 */
             }
 
-            /* Additional mobile spacing fixes */
             .header {
-                padding-right: 10px; /* Add right padding for balance */
+                padding-right: 10px;
+                margin-left: 15px; /* Added margin */
+                margin-right: 15px;
             }
 
             .review-content {
-                padding-right: 10px; /* Ensure text doesn't touch right edge */
+                padding-right: 10px;
             }
         }
 
         /* Extra small screens */
         @media (max-width: 360px) {
             .notebook-container {
-                padding: 25px 20px 25px 75px; /* Even more space from blue line */
+                padding: 25px 20px 25px 95px; /* Increased from 75px to 95px */
             }
 
             .review-cards {
+                margin-left: 20px; /* Increased from 10px to 20px */
+                margin-right: 10px;
+            }
+
+            .header {
                 margin-left: 10px;
                 margin-right: 10px;
             }
@@ -345,119 +125,3 @@
                 line-height: 1.3;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="notebook-container">
-        <!-- Notebook Holes -->
-        <div class="notebook-holes">
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-        </div>
-        
-        <!-- Blue Margin Line -->
-        <div class="margin-line"></div>
-        
-        <!-- Header -->
-        <div class="header">
-            <h1 class="main-title">II Tutions Curriculum Converter</h1>
-            <p class="subtitle">Transform Your Educational Content Seamlessly</p>
-            <a href="/converter" class="start-btn">START CONVERSION</a>
-            
-            <div class="stats-box">
-                <span class="stats-icon">📊</span>
-                <span id="stats-number">3,678</span>
-                <span>Curriculums are Generated in Previous Days</span>
-            </div>
-        </div>
-        
-        <!-- Reviews Section - Simplified without heading -->
-        <div class="review-cards">
-                <!-- Teacher Review 1 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-icon">👨‍🏫</div>
-                        <div>
-                            <div class="review-author">Priya S.</div>
-                            <div class="review-role">Academic Counselor</div>
-                        </div>
-                    </div>
-                    <div class="review-content">I use this tool to prepare parents for board transitions. The terminology explanations are spot-on and professionally accurate. Finally found a resource that explains board differences clearly!</div>
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <div class="review-date">2 weeks ago</div>
-                </div>
-
-                <!-- Parent Review 1 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-icon">👨‍👩‍👧‍👦</div>
-                        <div>
-                            <div class="review-author">Meera & Suresh</div>
-                            <div class="review-role">Parents of Grade 9 student</div>
-                        </div>
-                    </div>
-                    <div class="review-content">We were confused about moving our daughter from CBSE to IB. This tool explained everything clearly - costs, curriculum differences, everything! Now we made an informed decision.</div>
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <div class="review-date">1 month ago</div>
-                </div>
-
-                <!-- Teacher Review 2 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-icon">👨‍🏫</div>
-                        <div>
-                            <div class="review-author">Rajesh K.</div>
-                            <div class="review-role">Science Teacher</div>
-                        </div>
-                    </div>
-                    <div class="review-content">The detailed comparison helped me understand why my ICSE students struggle when transitioning to Cambridge. Great resource for educators! The assessment method comparisons are incredibly detailed.</div>
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <div class="review-date">3 weeks ago</div>
-                </div>
-
-                <!-- Parent Review 2 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-icon">👨‍👩‍👧‍👦</div>
-                        <div>
-                            <div class="review-author">Anita J.</div>
-                            <div class="review-role">Mother of Grade 11 student</div>
-                        </div>
-                    </div>
-                    <div class="review-content">Comparing ICSE vs Cambridge was overwhelming until we found this converter. The cost analysis section saved us from making a costly mistake. It's like having an education consultant for free!</div>
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <div class="review-date">2 months ago</div>
-                </div>
-            </div>
-        </div>
-
-    <script>
-        // Add some interactive animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const counter = document.querySelector('#stats-number');
-            if (counter) {
-                const targetNumber = 3678;
-                let currentNumber = 0;
-                const increment = targetNumber / 100;
-                
-                const countAnimation = setInterval(() => {
-                    currentNumber += increment;
-                    if (currentNumber >= targetNumber) {
-                        currentNumber = targetNumber;
-                        clearInterval(countAnimation);
-                    }
-                    counter.textContent = Math.floor(currentNumber).toLocaleString();
-                }, 20);
-            }
-        });
-    </script>
-</body>
-</html>
