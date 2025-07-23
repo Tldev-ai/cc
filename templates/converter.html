@@ -20,7 +20,7 @@
 
         /* Notebook Paper Container */
         .notebook-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: #ffffff;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -37,6 +37,10 @@
             top: 80px;
             bottom: 80px;
             width: 20px;
+            min-height: calc(100vh - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .hole {
@@ -45,8 +49,8 @@
             border-radius: 50%;
             background: #f8f8f8;
             border: 1px solid #d0d0d0;
-            margin-bottom: 50px;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         /* Blue Margin Line */
@@ -57,6 +61,35 @@
             bottom: 0;
             width: 1px;
             background: #0066cc;
+            min-height: 100vh;
+        }
+
+        /* Back Button - Top Left */
+        .back-button-container {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+
+        .btn-back {
+            background: white;
+            color: #4A90E2;
+            border: 2px solid #4A90E2;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background: #f8f9ff;
         }
 
         /* Header */
@@ -88,6 +121,7 @@
             font-style: italic;
         }
 
+        /* FORM SECTION */
         .form-section {
             margin-bottom: 50px;
             position: relative;
@@ -262,17 +296,23 @@
             border-color: #4A90E2;
         }
 
-        .action-buttons {
-            display: flex;
+        /* Compare Button Container */
+        .compare-button-container {
+            display: none;
             justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
+            margin-top: 60px;
             position: relative;
             z-index: 10;
         }
 
-        .btn {
-            padding: 12px 30px;
+        .compare-button-container.show {
+            display: flex;
+        }
+
+        .btn-compare {
+            background: #4A90E2;
+            color: white;
+            padding: 15px 40px;
             font-size: 1rem;
             font-weight: 600;
             border: 2px solid #4A90E2;
@@ -286,11 +326,6 @@
             display: inline-block;
         }
 
-        .btn-compare {
-            background: #4A90E2;
-            color: white;
-        }
-
         .btn-compare:hover {
             background: #357ABD;
             transform: translateY(-1px);
@@ -301,16 +336,6 @@
             border-color: #ccc;
             cursor: not-allowed;
             transform: none;
-        }
-
-        .btn-back {
-            background: white;
-            color: #4A90E2;
-            border: 2px solid #4A90E2;
-        }
-
-        .btn-back:hover {
-            background: #f8f9ff;
         }
 
         .btn-compare.loading {
@@ -340,6 +365,186 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* RESULTS SECTION - HIDDEN INITIALLY */
+        .results-section {
+            display: none;
+            position: relative;
+            z-index: 10;
+            margin: 50px 20px;
+            padding: 30px;
+            border: 2px solid #000;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+
+        .results-title {
+            font-size: 1.8rem;
+            color: #000000;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .results-subtitle {
+            font-size: 1.1rem;
+            color: #333333;
+            font-style: italic;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 2px solid #000;
+            margin: 20px 0;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: #000;
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid #000;
+        }
+
+        .comparison-table th:first-child {
+            width: 25%;
+            background: #e9ecef;
+        }
+
+        .comparison-table th:nth-child(2),
+        .comparison-table th:nth-child(3) {
+            width: 37.5%;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            vertical-align: top;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border: 2px solid #000;
+        }
+
+        .comparison-table td:first-child {
+            background: #f8f9fa;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td:nth-child(2),
+        .comparison-table td:nth-child(3) {
+            background: white;
+            text-align: left;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .comparison-table tr:hover td:first-child {
+            background: #e9ecef;
+        }
+
+        .board-content {
+            color: #000;
+            text-align: justify;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .board-content p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .board-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* NEW: Bullet Point Styling */
+        .board-content ul {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.6;
+            list-style-type: disc;
+        }
+
+        .board-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .board-content li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Loading State */
+        .loading-message {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.1rem;
+            color: #333;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4A90E2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+        }
+
+        /* Error Message */
+        .error-message {
+            background: #fee2e2;
+            border: 2px solid #000;
+            color: #dc2626;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d1fae5;
+            border: 2px solid #000;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-weight: 600;
+        }
+
         .validation-message {
             background: #fee2e2;
             border: 2px solid #fecaca;
@@ -358,33 +563,43 @@
             display: block;
         }
 
-        /* Enhanced Mobile Optimization - UPDATED */
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
             }
 
             .notebook-container {
-                padding: 40px 30px 40px 110px; /* Increased left padding from 90px to 110px */
+                padding: 40px 30px 40px 110px;
                 margin: 0 5px;
+            }
+
+            .back-button-container {
+                margin-left: 10px;
+                margin-bottom: 15px;
+            }
+
+            .btn-back {
+                padding: 6px 16px;
+                font-size: 0.85rem;
             }
 
             .section-title {
                 font-size: 1.6rem;
                 line-height: 1.2;
-                margin-left: 10px; /* Added margin for header */
+                margin-left: 10px;
                 margin-right: 10px;
             }
 
             .section-subtitle {
                 font-size: 0.9rem;
                 line-height: 1.4;
-                margin-left: 10px; /* Added margin for subtitle */
+                margin-left: 10px;
                 margin-right: 10px;
             }
 
             .form-section {
-                margin-left: 30px; /* Increased from 20px to 30px */
+                margin-left: 30px;
                 margin-right: 20px;
             }
 
@@ -444,215 +659,169 @@
                 touch-action: manipulation;
             }
 
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                margin-top: 35px;
-                margin-left: 20px; /* Added margin */
+            .compare-button-container {
+                margin-top: 40px;
+                margin-left: 20px;
                 margin-right: 20px;
             }
 
-            .btn {
+            .btn-compare {
                 width: 100%;
-                max-width: 320px;
+                max-width: 300px;
                 padding: 14px 25px;
                 font-size: 0.95rem;
                 touch-action: manipulation;
             }
 
+            .results-section {
+                margin: 30px 20px;
+                padding: 20px;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .comparison-table thead,
+            .comparison-table tbody,
+            .comparison-table th,
+            .comparison-table td,
+            .comparison-table tr {
+                display: block;
+            }
+
+            .comparison-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .comparison-table tr {
+                border: 2px solid #000;
+                margin-bottom: 15px;
+                padding: 15px;
+                border-radius: 4px;
+                background: white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .comparison-table td {
+                border: none;
+                padding: 10px 0;
+                text-align: left !important;
+                white-space: normal;
+                font-size: 0.9rem;
+            }
+
+            .comparison-table td:first-child {
+                background: #000;
+                color: white;
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                font-weight: bold;
+                text-align: center !important;
+                font-size: 1rem;
+            }
+
+            .comparison-table td:nth-child(2):before {
+                content: "From Board: ";
+                font-weight: bold;
+                color: #000;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .comparison-table td:nth-child(3):before {
+                content: "To Board: ";
+                font-weight: bold;
+                color: #000;
+                display: block;
+                margin-bottom: 5px;
+                margin-top: 15px;
+            }
+
             .validation-message {
-                margin: 15px 20px; /* Increased left margin from 10px to 20px */
+                margin: 15px 20px;
                 padding: 14px;
                 font-size: 0.85rem;
+            }
+
+            /* Mobile bullet point adjustments */
+            .board-content ul {
+                padding-left: 15px;
+            }
+
+            .board-content li {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
             }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
             .notebook-container {
-                padding: 30px 25px 30px 100px; /* Increased left padding from 80px to 100px */
+                padding: 30px 25px 30px 100px;
                 margin: 0;
                 min-height: auto;
             }
 
-            .section-title {
-                font-size: 1.4rem;
-                margin-bottom: 12px;
-                margin-left: 15px; /* Added margin */
-                margin-right: 15px;
-            }
-
-            .section-subtitle {
-                font-size: 0.85rem;
-                margin-bottom: 20px;
-                margin-left: 15px; /* Added margin */
-                margin-right: 15px;
-            }
-
             .form-section {
-                margin-left: 25px; /* Increased from 15px to 25px */
+                margin-left: 25px;
                 margin-right: 15px;
                 margin-bottom: 40px;
             }
 
-            .form-group {
-                margin-bottom: 25px;
+            .results-section {
+                margin: 25px 15px;
+                padding: 15px;
             }
 
-            .form-label {
-                font-size: 0.9rem;
-                margin-bottom: 6px;
+            .results-title {
+                font-size: 1.5rem;
             }
 
-            .dropdown-btn {
-                padding: 12px 14px;
-                font-size: 0.9rem;
-            }
-
-            .dropdown-content {
-                max-height: 160px;
-                font-size: 0.85rem;
-            }
-
-            .dropdown-item {
-                padding: 12px 14px;
-            }
-
-            .stream-group {
-                padding: 10px;
-                margin-top: 10px;
-            }
-
-            .stream-option {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-                min-width: 80px;
-                text-align: center;
-            }
-
-            .action-buttons {
-                gap: 12px;
-                margin-top: 30px;
-                margin-left: 15px; /* Added margin */
-                margin-right: 15px;
-            }
-
-            .btn {
-                max-width: 280px;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-
-            .validation-message {
-                margin: 12px 15px; /* Increased left margin from 10px to 15px */
+            .comparison-table tr {
                 padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .comparison-table td {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                padding-right: 10px;
+            }
+
+            .board-content li {
                 font-size: 0.8rem;
-                line-height: 1.4;
+                margin-bottom: 5px;
             }
         }
 
         @media (max-width: 360px) {
             .notebook-container {
-                padding: 25px 20px 25px 95px; /* Increased from 75px to 95px */
+                padding: 25px 20px 25px 95px;
             }
 
-            .section-title {
+            .results-section {
+                margin: 20px 10px;
+                padding: 12px;
+            }
+
+            .results-title {
                 font-size: 1.3rem;
-                margin-left: 10px; /* Added margin */
-                margin-right: 10px;
             }
 
-            .section-subtitle {
+            .comparison-table td {
                 font-size: 0.8rem;
-                margin-left: 10px; /* Added margin */
-                margin-right: 10px;
+                line-height: 1.4;
             }
 
-            .form-section {
-                margin-left: 20px; /* Increased from 10px to 20px */
-                margin-right: 10px;
-            }
-
-            .form-label {
-                font-size: 0.85rem;
-            }
-
-            .dropdown-btn {
-                padding: 10px 12px;
-                font-size: 0.85rem;
-            }
-
-            .stream-option {
-                padding: 6px 10px;
+            .board-content li {
                 font-size: 0.75rem;
-                min-width: 70px;
-            }
-
-            .action-buttons {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-
-            .btn {
-                max-width: 250px;
-                padding: 10px 18px;
-                font-size: 0.85rem;
-            }
-
-            .validation-message {
-                margin: 10px 15px; /* Increased left margin from 5px to 15px */
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .notebook-container {
-                padding: 20px 15px 20px 85px; /* Increased from 65px to 85px */
-            }
-
-            .section-title {
-                font-size: 1.2rem;
-                word-wrap: break-word;
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
-            .section-subtitle {
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
-            .form-section {
-                margin-left: 15px; /* Increased from 5px to 15px */
-                margin-right: 5px;
-            }
-
-            .stream-options {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .stream-option {
-                width: 100%;
-                max-width: 180px;
-            }
-
-            .action-buttons {
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
-            .btn {
-                max-width: 220px;
-                font-size: 0.8rem;
-            }
-
-            .validation-message {
-                margin: 8px 10px; /* Better spacing */
+                margin-bottom: 4px;
             }
         }
 
@@ -661,13 +830,13 @@
             .dropdown-btn:hover,
             .dropdown-item:hover,
             .stream-option:hover,
-            .btn:hover {
+            .btn-compare:hover {
                 transform: none;
             }
 
             .dropdown-btn:active,
             .stream-option:active,
-            .btn:active {
+            .btn-compare:active {
                 transform: scale(0.98);
             }
         }
@@ -687,10 +856,30 @@
             <div class="hole"></div>
             <div class="hole"></div>
             <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
         </div>
         
         <!-- Blue Margin Line -->
         <div class="margin-line"></div>
+        
+        <!-- Back Button - Top Left -->
+        <div class="back-button-container">
+            <a href="/" class="btn-back">← Back</a>
+        </div>
         
         <div class="header">
             <h1 class="section-title">Curriculum Comparison Tool</h1>
@@ -699,7 +888,8 @@
         
         <div class="validation-message" id="validationMessage"></div>
         
-        <div class="form-section">
+        <!-- FORM SECTION -->
+        <div class="form-section" id="formSection">
             <div class="form-group">
                 <label class="form-label">From Board</label>
                 <div class="dropdown" data-dropdown="fromBoard">
@@ -782,16 +972,31 @@
             </div>
         </div>
         
-        <div class="action-buttons">
-            <button class="btn btn-compare" id="compareBtn" disabled>
+        <!-- Compare Button -->
+        <div class="compare-button-container" id="compareButtonContainer">
+            <button class="btn-compare" id="compareBtn">
                 <span id="compareBtnText">Compare Boards</span>
             </button>
-            <a href="/" class="btn btn-back">Back</a>
+        </div>
+
+        <!-- RESULTS SECTION - SHOWS AFTER COMPARISON -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 class="results-title">Professional Curriculum Comparison</h2>
+                <div class="results-subtitle" id="comparisonSubtitle">
+                    Detailed comparison results
+                </div>
+            </div>
+
+            <!-- Results Content -->
+            <div id="resultsContent">
+                <!-- Loading, error, or comparison table will be inserted here -->
+            </div>
         </div>
     </div>
 
     <script>
-        // Optimized state management
+        // State management
         const state = {
             fromBoard: '',
             toBoard: '',
@@ -800,7 +1005,7 @@
             stream: ''
         };
 
-        // Board-specific and grade-specific subject data
+        // Subject data (same as before)
         const subjectData = {
             'CBSE': {
                 'Grade 1': ['English', 'Mathematics', 'Hindi', 'Environmental Studies', 'Art Education'],
@@ -914,17 +1119,42 @@
             }
         };
 
-        // Cache DOM elements for better performance
+        // Cache DOM elements
         const elements = {
             compareBtn: null,
             compareBtnText: null,
+            compareButtonContainer: null,
             validationMessage: null,
             streamGroup: null,
             subjectBtn: null,
-            subjectDropdown: null
+            subjectDropdown: null,
+            resultsSection: null,
+            resultsContent: null,
+            comparisonSubtitle: null
         };
 
-        // Fast dropdown handler
+        // Initialize elements on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            elements.compareBtn = document.getElementById('compareBtn');
+            elements.compareBtnText = document.getElementById('compareBtnText');
+            elements.compareButtonContainer = document.getElementById('compareButtonContainer');
+            elements.validationMessage = document.getElementById('validationMessage');
+            elements.streamGroup = document.getElementById('streamGroup');
+            elements.subjectBtn = document.getElementById('subjectBtn');
+            elements.subjectDropdown = document.getElementById('subjectDropdown');
+            elements.resultsSection = document.getElementById('resultsSection');
+            elements.resultsContent = document.getElementById('resultsContent');
+            elements.comparisonSubtitle = document.getElementById('comparisonSubtitle');
+            
+            // Set up compare button click
+            if (elements.compareBtn) {
+                elements.compareBtn.addEventListener('click', compareBoards);
+            }
+            
+            disableSubjectDropdown();
+        });
+
+        // Dropdown handling (same as before)
         function handleDropdownClick(event) {
             event.stopPropagation();
             
@@ -934,9 +1164,8 @@
             const button = dropdownElement.querySelector('.dropdown-btn');
             const content = dropdownElement.querySelector('.dropdown-content');
             const arrow = button.querySelector('.arrow');
-            const dropdownType = dropdownElement.dataset.dropdown;
             
-            // Close all other dropdowns immediately
+            // Close all other dropdowns
             document.querySelectorAll('.dropdown-content.show').forEach(dropdown => {
                 if (dropdown !== content) {
                     dropdown.classList.remove('show');
@@ -952,20 +1181,16 @@
             arrow.classList.toggle('rotate', !isOpen);
         }
 
-        // Fast option selection
         function selectOption(event, dropdownType, value, displayText) {
             event.stopPropagation();
             
-            // Immediate UI update
             const textElement = document.getElementById(dropdownType + 'Text');
             if (textElement) {
                 textElement.textContent = displayText || value;
             }
             
-            // Update state
             state[dropdownType] = value;
             
-            // Close dropdown immediately
             const dropdown = event.target.closest('.dropdown-content');
             if (dropdown) {
                 dropdown.classList.remove('show');
@@ -974,13 +1199,11 @@
                 button.querySelector('.arrow').classList.remove('rotate');
             }
             
-            // Handle side effects asynchronously
             requestAnimationFrame(() => {
                 handleSelectionSideEffects(dropdownType, value);
             });
         }
 
-        // Handle selection side effects
         function handleSelectionSideEffects(dropdownType, value) {
             switch (dropdownType) {
                 case 'grade':
@@ -998,17 +1221,14 @@
             updateButtonStates();
         }
 
-        // Optimized grade selection handling
         function handleGradeSelection(grade) {
             const streamGroup = elements.streamGroup || document.getElementById('streamGroup');
             if (!streamGroup) return;
             
             const isHighGrade = grade === 'Grade 11' || grade === 'Grade 12';
-            
             streamGroup.classList.toggle('show', isHighGrade);
             
             if (isHighGrade) {
-                // Reset for high grades
                 state.stream = '';
                 state.subject = '';
                 const subjectText = document.getElementById('subjectText');
@@ -1016,7 +1236,6 @@
                 clearStreamSelection();
                 disableSubjectDropdown();
             } else {
-                // Reset for regular grades
                 state.stream = '';
                 clearStreamSelection();
                 state.subject = '';
@@ -1025,24 +1244,18 @@
             }
         }
 
-        // Fast stream selection
         function selectStream(event, stream) {
             event.stopPropagation();
-            
             state.stream = stream;
-            
-            // Immediate UI update
             clearStreamSelection();
             event.target.classList.add('selected');
             
-            // Handle side effects asynchronously
             requestAnimationFrame(() => {
                 updateSubjects();
                 updateButtonStates();
             });
         }
 
-        // Optimized functions
         function clearStreamSelection() {
             document.querySelectorAll('.stream-option.selected').forEach(option => {
                 option.classList.remove('selected');
@@ -1086,7 +1299,6 @@
             
             if (!subjectDropdown || !subjectBtn) return;
             
-            // Create fragment for better performance
             const fragment = document.createDocumentFragment();
             subjects.forEach(subject => {
                 const item = document.createElement('div');
@@ -1096,16 +1308,13 @@
                 fragment.appendChild(item);
             });
             
-            // Clear and populate
             subjectDropdown.innerHTML = '';
             subjectDropdown.appendChild(fragment);
             
-            // Enable dropdown
             subjectBtn.disabled = false;
             subjectBtn.style.opacity = '1';
             subjectBtn.style.cursor = 'pointer';
             
-            // Reset selection
             state.subject = '';
             document.getElementById('subjectText').textContent = 'Select Subject';
             
@@ -1129,19 +1338,17 @@
         }
 
         function updateButtonStates() {
-            const compareBtn = elements.compareBtn || document.getElementById('compareBtn');
-            if (!compareBtn) return;
+            const compareButtonContainer = elements.compareButtonContainer || document.getElementById('compareButtonContainer');
+            if (!compareButtonContainer) return;
             
             const { fromBoard, toBoard, grade, subject, stream } = state;
             let allSelected = fromBoard && toBoard && grade && subject;
             
-            // Check stream for Grade 11/12
             if ((grade === 'Grade 11' || grade === 'Grade 12') && !stream) {
                 allSelected = false;
             }
             
-            compareBtn.disabled = !allSelected;
-            compareBtn.style.opacity = allSelected ? '1' : '0.5';
+            compareButtonContainer.classList.toggle('show', allSelected);
         }
 
         function validateInputs() {
@@ -1173,7 +1380,8 @@
             validationMsg.classList.remove('show');
         }
 
-        function compareBoards() {
+        // UPDATED: Compare Boards Function - Shows Results on Same Page
+        async function compareBoards() {
             const errors = validateInputs();
             
             if (errors.length > 0) {
@@ -1181,37 +1389,178 @@
                 return;
             }
             
+            // Hide validation message
+            hideValidationMessage();
+            
+            // Update button state
             const compareBtn = elements.compareBtn || document.getElementById('compareBtn');
             const compareBtnText = elements.compareBtnText || document.getElementById('compareBtnText');
             
             compareBtn.classList.add('loading');
             compareBtn.disabled = true;
-            compareBtnText.textContent = 'Preparing Comparison...';
+            compareBtnText.textContent = 'Generating Results...';
             
+            // Show results section
+            const resultsSection = elements.resultsSection || document.getElementById('resultsSection');
+            const resultsContent = elements.resultsContent || document.getElementById('resultsContent');
+            const comparisonSubtitle = elements.comparisonSubtitle || document.getElementById('comparisonSubtitle');
+            
+            resultsSection.classList.add('show');
+            
+            // Update subtitle
             const { fromBoard, toBoard, grade, subject, stream } = state;
-            const params = new URLSearchParams({
-                from: fromBoard,
-                to: toBoard,
-                grade,
-                subject
-            });
+            let subtitleText = `${fromBoard} vs ${toBoard} - ${subject} (${grade})`;
+            if (stream) subtitleText += ` - ${stream}`;
+            comparisonSubtitle.textContent = subtitleText;
             
-            if (stream) params.append('stream', stream);
+            // Show loading state
+            resultsContent.innerHTML = `
+                <div class="loading-message">
+                    <div class="loading-spinner"></div>
+                    Generating comprehensive comparison...<br>
+                    <small>This may take 30-60 seconds for detailed analysis</small>
+                </div>
+            `;
             
-            setTimeout(() => {
-                window.location.href = `/comparison-result?${params.toString()}`;
-            }, 500); // Reduced delay
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            try {
+                // Make API call to generate comparison
+                const response = await fetch('/api/generate-comprehensive-comparison', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fromBoard: fromBoard,
+                        toBoard: toBoard,
+                        grade: grade,
+                        subject: subject,
+                        stream: stream || ''
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.comparison && data.comparison.categories) {
+                    displayComparisonTable(data.comparison.categories);
+                    
+                    // Show success message
+                    const successMsg = `
+                        <div class="success-message">
+                            ✅ Successfully generated ${data.comparison.categories.length} comprehensive comparison categories!
+                        </div>
+                    `;
+                    resultsContent.insertAdjacentHTML('afterbegin', successMsg);
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        const successElement = resultsContent.querySelector('.success-message');
+                        if (successElement) successElement.remove();
+                    }, 5000);
+                } else {
+                    showError(data.error || 'Failed to generate comparison');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Network error occurred while generating comparison');
+            }
+
+            // Reset button
+            compareBtn.disabled = false;
+            compareBtn.classList.remove('loading');
+            compareBtnText.textContent = 'Compare Boards';
         }
 
-        // Event delegation for better performance
+        function displayComparisonTable(categories) {
+            const resultsContent = elements.resultsContent || document.getElementById('resultsContent');
+            
+            if (!categories || categories.length === 0) {
+                showError('No comparison categories received');
+                return;
+            }
+
+            let tableHTML = `
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>ASPECT / CATEGORY</th>
+                            <th>${state.fromBoard}</th>
+                            <th>${state.toBoard}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            categories.forEach((category) => {
+                const fromContent = formatContent(category.fromBoardContent);
+                const toContent = formatContent(category.toBoardContent);
+                
+                tableHTML += `
+                    <tr>
+                        <td>${category.name}</td>
+                        <td class="board-content">${fromContent}</td>
+                        <td class="board-content">${toContent}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+
+            resultsContent.innerHTML = tableHTML;
+            
+            console.log(`Successfully displayed ${categories.length} comparison categories`);
+        }
+
+        // UPDATED: Format Content Function - Now Handles Bullet Points
+        function formatContent(content) {
+            if (!content) return '<p>No content available</p>';
+            
+            // Handle bullet point format
+            if (content.includes('•')) {
+                // Split by bullet points and format as list
+                const bulletPoints = content.split('•').filter(point => point.trim().length > 0);
+                
+                if (bulletPoints.length === 0) {
+                    return `<p>${content}</p>`;
+                }
+                
+                const listItems = bulletPoints.map(point => `<li>${point.trim()}</li>`).join('');
+                return `<ul style="margin: 0; padding-left: 20px; line-height: 1.6; list-style-type: disc;">${listItems}</ul>`;
+            }
+            
+            // Handle paragraph format (fallback)
+            const paragraphs = content.split('\n\n').filter(p => p.trim().length > 0);
+            
+            if (paragraphs.length === 0) {
+                return `<p>${content}</p>`;
+            }
+            
+            return paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+        }
+
+        function showError(message) {
+            const resultsContent = elements.resultsContent || document.getElementById('resultsContent');
+            resultsContent.innerHTML = `
+                <div class="error-message">
+                    ❌ Error: ${message}<br>
+                    <small>Please try again or contact support if the issue persists.</small>
+                </div>
+            `;
+        }
+
+        // Event delegation
         document.addEventListener('click', function(event) {
-            // Handle dropdown clicks
             if (event.target.closest('.dropdown-btn')) {
                 handleDropdownClick(event);
                 return;
             }
             
-            // Handle option selection
             if (event.target.classList.contains('dropdown-item')) {
                 const dropdown = event.target.closest('.dropdown');
                 const dropdownType = dropdown.dataset.dropdown;
@@ -1222,14 +1571,12 @@
                 return;
             }
             
-            // Handle stream selection
             if (event.target.classList.contains('stream-option')) {
                 const stream = event.target.dataset.stream;
                 selectStream(event, stream);
                 return;
             }
             
-            // Close all dropdowns if clicking outside
             if (!event.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown-content.show').forEach(dropdown => {
                     dropdown.classList.remove('show');
@@ -1237,23 +1584,6 @@
                     dropdown.previousElementSibling.querySelector('.arrow').classList.remove('rotate');
                 });
             }
-        });
-
-        // Fast initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cache frequently used elements
-            elements.compareBtn = document.getElementById('compareBtn');
-            elements.compareBtnText = document.getElementById('compareBtnText');
-            elements.validationMessage = document.getElementById('validationMessage');
-            elements.streamGroup = document.getElementById('streamGroup');
-            elements.subjectBtn = document.getElementById('subjectBtn');
-            elements.subjectDropdown = document.getElementById('subjectDropdown');
-            
-            // Set up compare button click
-            elements.compareBtn.addEventListener('click', compareBoards);
-            
-            // Initialize disabled state
-            disableSubjectDropdown();
         });
     </script>
 </body>
