@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-here')
 
 # Claude API Configuration
-CLAUDE_API_KEY = os.environ.get('CLAUDE_API_KEY', "sk-ant-api03-SZGM_6wqFtmd8gsI-IxDCfFXcp5PR_BDHoZ")
+CLAUDE_API_KEY = os.environ.get('CLAUDE_API_KEY')
 CLAUDE_API_URL = "https://api.anthropic.com/v1/messages"
 
 # Initialize components (with error handling for missing modules)
