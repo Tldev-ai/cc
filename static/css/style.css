@@ -382,10 +382,10 @@ body {
     width: 25%;
 }
 
-/* Responsive */
+/* Responsive - UPDATED WITH BETTER MOBILE SPACING */
 @media (max-width: 768px) {
     .notebook-container {
-        padding: 40px 60px 40px 80px;
+        padding: 40px 30px 40px 90px; /* Increased left padding from 80px to 90px */
     }
     
     .main-title {
@@ -394,9 +394,147 @@ body {
     
     .nav-tabs {
         flex-wrap: wrap;
+        margin-left: 20px; /* Better spacing from blue line */
+        margin-right: 20px;
+        grid-template-columns: 1fr; /* Stack navigation vertically on mobile */
+        gap: 10px;
+        max-width: none;
+    }
+
+    .nav-tab {
+        font-size: 0.85rem;
+        padding: 10px 12px;
     }
     
     .review-cards {
         grid-template-columns: 1fr;
+        margin-left: 20px; /* Better alignment */
+        margin-right: 20px;
+        gap: 20px;
+    }
+
+    .form-section {
+        margin-left: 0; /* Remove extra margin on mobile */
+        margin-right: 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .stats-box {
+        margin-left: 0;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    .comparison-table {
+        font-size: 0.85rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notebook-container {
+        padding: 30px 25px 30px 80px; /* Increased left padding */
+        margin: 10px;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .nav-tabs {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .review-cards {
+        margin-left: 15px;
+        margin-right: 15px;
+        gap: 15px;
+    }
+
+    .review-card {
+        padding: 15px;
+    }
+
+    .form-section {
+        padding: 0 10px; /* Add padding for form content */
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-select {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+
+    .comparison-table {
+        font-size: 0.8rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 8px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .notebook-container {
+        padding: 25px 20px 25px 75px; /* More space from blue line */
+    }
+
+    .nav-tabs {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .review-cards {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .form-section {
+        padding: 0 5px;
     }
 }
