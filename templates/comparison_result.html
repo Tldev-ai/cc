@@ -311,19 +311,24 @@
             font-weight: 600;
         }
 
-        /* Enhanced Mobile Optimization */
+        /* Enhanced Mobile Optimization - UPDATED */
         @media (max-width: 768px) {
             .comparison-result-body {
                 padding: 15px;
             }
 
             .result-notebook-container {
-                padding: 40px 30px 40px 90px; /* Increased left padding from 80px to 90px */
+                padding: 40px 30px 40px 110px; /* Increased left padding from 90px to 110px */
                 margin: 0 5px;
             }
 
+            .result-header {
+                margin-left: 10px; /* Added margin for header */
+                margin-right: 10px;
+            }
+
             .result-comparison-section {
-                margin: 30px 20px; /* Better spacing from blue line */
+                margin: 30px 30px; /* Increased from 20px to 30px for better spacing */
                 padding: 15px;
             }
             
@@ -340,6 +345,8 @@
             .result-generate-button {
                 padding: 15px 30px;
                 font-size: 0.9rem;
+                margin-left: 10px; /* Added margin */
+                margin-right: 10px;
             }
 
             .result-section-title {
@@ -421,6 +428,12 @@
             .result-back-button {
                 padding: 8px 16px;
                 font-size: 0.9rem;
+                margin-left: 10px; /* Added margin */
+            }
+
+            .result-error-message,
+            .result-success-message {
+                margin: 20px 10px; /* Better mobile margins */
             }
         }
 
@@ -430,12 +443,17 @@
             }
 
             .result-notebook-container {
-                padding: 30px 25px 30px 80px; /* Increased left padding from 60px to 80px */
+                padding: 30px 25px 30px 100px; /* Increased left padding from 80px to 100px */
                 margin: 0;
             }
 
+            .result-header {
+                margin-left: 15px; /* Added margin */
+                margin-right: 15px;
+            }
+
             .result-comparison-section {
-                margin: 30px 15px; /* Better mobile alignment */
+                margin: 30px 25px; /* Increased from 15px to 25px for better mobile alignment */
                 padding: 10px;
             }
 
@@ -453,6 +471,8 @@
             .result-generate-button {
                 padding: 12px 25px;
                 font-size: 0.85rem;
+                margin-left: 15px; /* Added margin */
+                margin-right: 15px;
             }
 
             .result-section-title {
@@ -489,23 +509,29 @@
             .result-back-button {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+                margin-left: 15px; /* Added margin */
             }
 
             .result-error-message,
             .result-success-message {
                 padding: 15px;
                 font-size: 0.9rem;
-                margin: 15px 10px; /* Better mobile margins */
+                margin: 15px 15px; /* Increased left margin for better mobile spacing */
             }
         }
 
         @media (max-width: 360px) {
             .result-notebook-container {
-                padding: 25px 20px 25px 75px; /* More space from blue line */
+                padding: 25px 20px 25px 95px; /* Increased from 75px to 95px for more space from blue line */
+            }
+
+            .result-header {
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .result-comparison-section {
-                margin: 30px 10px; /* Better tiny screen alignment */
+                margin: 30px 20px; /* Increased from 10px to 20px for better tiny screen alignment */
                 padding: 8px;
             }
 
@@ -536,16 +562,32 @@
             .result-generate-button {
                 padding: 10px 20px;
                 font-size: 0.8rem;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .result-back-button {
+                margin-left: 10px;
+            }
+
+            .result-error-message,
+            .result-success-message {
+                margin: 15px 10px;
             }
         }
 
         @media (max-width: 320px) {
             .result-notebook-container {
-                padding: 20px 15px 20px 65px; /* Even more space from blue line */
+                padding: 20px 15px 20px 85px; /* Increased from 65px to 85px for even more space from blue line */
+            }
+
+            .result-header {
+                margin-left: 5px;
+                margin-right: 5px;
             }
 
             .result-comparison-section {
-                margin: 25px 5px; /* Minimal margins for tiny screens */
+                margin: 25px 15px; /* Increased from 5px to 15px for minimal margins on tiny screens */
                 padding: 6px;
             }
 
@@ -573,11 +615,19 @@
             .result-back-button {
                 padding: 5px 10px;
                 font-size: 0.75rem;
+                margin-left: 5px;
             }
 
             .result-generate-button {
                 font-size: 0.75rem;
                 padding: 8px 15px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            .result-error-message,
+            .result-success-message {
+                margin: 10px 5px;
             }
         }
 
