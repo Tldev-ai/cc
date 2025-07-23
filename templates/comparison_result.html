@@ -318,12 +318,12 @@
             }
 
             .result-notebook-container {
-                padding: 40px 30px 40px 80px;
+                padding: 40px 30px 40px 90px; /* Increased left padding from 80px to 90px */
                 margin: 0 5px;
             }
 
             .result-comparison-section {
-                margin: 30px 10px;
+                margin: 30px 20px; /* Better spacing from blue line */
                 padding: 15px;
             }
             
@@ -430,22 +430,24 @@
             }
 
             .result-notebook-container {
-                padding: 30px 20px 30px 60px;
+                padding: 30px 25px 30px 80px; /* Increased left padding from 60px to 80px */
                 margin: 0;
             }
 
             .result-comparison-section {
-                margin: 30px 5px;
+                margin: 30px 15px; /* Better mobile alignment */
                 padding: 10px;
             }
 
             .result-comparison-title {
                 font-size: 1.5rem;
+                line-height: 1.2;
             }
 
             .result-comparison-subtitle {
                 font-size: 0.9rem;
                 word-wrap: break-word;
+                line-height: 1.3;
             }
 
             .result-generate-button {
@@ -455,6 +457,7 @@
 
             .result-section-title {
                 font-size: 1.3rem;
+                line-height: 1.2;
             }
 
             .result-comparison-table tr {
@@ -465,6 +468,7 @@
             .result-comparison-table td {
                 font-size: 0.85rem;
                 line-height: 1.5;
+                padding-right: 10px; /* Prevent text touching edges */
             }
 
             .result-comparison-table td:first-child {
@@ -491,29 +495,102 @@
             .result-success-message {
                 padding: 15px;
                 font-size: 0.9rem;
+                margin: 15px 10px; /* Better mobile margins */
             }
         }
 
-        @media (max-width: 320px) {
+        @media (max-width: 360px) {
             .result-notebook-container {
-                padding: 25px 15px 25px 50px;
+                padding: 25px 20px 25px 75px; /* More space from blue line */
             }
 
             .result-comparison-section {
-                margin: 30px 2px;
+                margin: 30px 10px; /* Better tiny screen alignment */
                 padding: 8px;
             }
 
             .result-comparison-title {
                 font-size: 1.3rem;
+                line-height: 1.1;
+            }
+
+            .result-comparison-subtitle {
+                font-size: 0.85rem;
+                line-height: 1.2;
             }
 
             .result-section-title {
                 font-size: 1.2rem;
+                line-height: 1.1;
             }
 
             .result-comparison-table td {
                 font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .result-comparison-table td:first-child {
+                font-size: 0.85rem;
+            }
+
+            .result-generate-button {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .result-notebook-container {
+                padding: 20px 15px 20px 65px; /* Even more space from blue line */
+            }
+
+            .result-comparison-section {
+                margin: 25px 5px; /* Minimal margins for tiny screens */
+                padding: 6px;
+            }
+
+            .result-comparison-title {
+                font-size: 1.2rem;
+                word-wrap: break-word;
+                line-height: 1.1;
+            }
+
+            .result-section-title {
+                font-size: 1.1rem;
+                word-wrap: break-word;
+            }
+
+            .result-comparison-table td {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .result-comparison-table td:first-child {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+
+            .result-back-button {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+
+            .result-generate-button {
+                font-size: 0.75rem;
+                padding: 8px 15px;
+            }
+        }
+
+        /* Touch device optimizations for better mobile interaction */
+        @media (hover: none) and (pointer: coarse) {
+            .result-back-button:hover,
+            .result-generate-button:hover {
+                transform: none;
+            }
+
+            .result-back-button:active,
+            .result-generate-button:active {
+                transform: scale(0.98);
             }
         }
     </style>
