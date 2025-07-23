@@ -310,10 +310,11 @@ def generate_specific_guidance():
         }), 500
 
 def generate_3_column_table_comparison(from_board, to_board, grade, subject):
-    """Generate structured data for 3-column table with ALL comprehensive categories including detailed Programme Structure"""
+    """Generate structured data for 3-column table with bullet points and Syllabus Comparison as first category"""
     
-    # Complete list of 35+ categories covering ALL aspects from the comprehensive guide
+    # Complete list of categories with Syllabus Comparison as first - ALL MAIN DIFFERENCES INCLUDED
     comprehensive_categories = [
+        'Syllabus Comparison',  # FIRST: Detailed syllabus differences for grade/subject
         'Educational Philosophy & Approach',
         'Programme Structure & Year Classifications',
         'Assessment Methods & Grading Systems',
@@ -348,29 +349,51 @@ def generate_3_column_table_comparison(from_board, to_board, grade, subject):
         'Special Needs & Inclusion Support',
         'Regional Variations & Local Adaptations',
         'Alternative Examination Boards & Pathways',
-        'Teacher Transition Requirements & Training'
+        'Teacher Transition Requirements & Training',
+        # ADDITIONAL CRITICAL DIFFERENCES
+        'Curriculum Depth vs Breadth Analysis',
+        'Grade Progression & Age Requirements',
+        'Subject Combination Rules & Flexibility',
+        'Internal vs External Assessment Ratios',
+        'Practical Examination Requirements',
+        'Portfolio & Project Assessment Methods',
+        'Continuous Assessment vs Final Exams',
+        'Marking Schemes & Grade Boundaries',
+        'Re-examination & Improvement Opportunities',
+        'Credit Transfer & Course Recognition',
+        'Medium of Instruction Requirements',
+        'Co-curricular Activity Integration',
+        'Community Service & Social Impact Requirements',
+        'Research & Independent Study Components',
+        'International Exchange & Study Abroad Options'
     ]
     
     comprehensive_prompt = f"""You are an expert educational consultant with deep knowledge of all education boards including CBSE, ICSE, IB, Cambridge, and State Boards. Generate an extremely detailed comprehensive curriculum comparison between {from_board} and {to_board} for {subject} in {grade}.
 
-CRITICAL REQUIREMENTS FOR COMPREHENSIVE 25,000+ WORD ANALYSIS:
+CRITICAL REQUIREMENTS FOR BULLET POINT FORMAT:
 
-1. Generate analysis for ALL 35 categories listed below
-2. Each category MUST have 4-5 detailed paragraphs for EACH board (400-500 words per board per category)
-3. Include SPECIFIC examples, practical implications, and actionable advice
-4. Use PROFESSIONAL TERMINOLOGY specific to each board
-5. NO bullet points - only flowing paragraph format
-6. Focus on {grade} {subject} specific information where relevant
-7. Include detailed financial costs, examination specifics, and transition guidance
+1. Generate analysis for ALL 50 categories listed below
+2. Each category MUST be formatted as BULLET POINTS (use • symbol)
+3. Each board should have 8-10 detailed bullet points per category
+4. NO PARAGRAPHS - ONLY BULLET POINTS
+5. Focus on {grade} {subject} specific information where relevant
+6. Include SPECIFIC examples, practical implications, and actionable advice
+7. Use PROFESSIONAL TERMINOLOGY specific to each board
 
-SPECIAL EMPHASIS ON PROGRAMME STRUCTURE & YEAR CLASSIFICATIONS:
-- Provide complete grade-wise breakdown with age ranges
-- Include specific programme levels (PYP/MYP/DP for IB, Primary/Secondary/A-Levels for Cambridge)
-- Detail board examination schedules and assessment timelines
-- Explain progression pathways and qualification requirements
-- Compare duration, flexibility, and structural differences
+SPECIAL EMPHASIS ON SYLLABUS COMPARISON (FIRST CATEGORY):
+For "Syllabus Comparison" category, provide SPECIFIC syllabus differences including:
+• Detailed topic coverage differences for {grade} {subject}
+• Chapter-wise comparison and sequence differences
+• Depth vs breadth of coverage for each topic
+• Grade-wise progression differences
+• Assessment weightage differences for topics
+• Practical/lab component differences
+• Mathematical complexity level differences (if applicable)
+• Real-world application emphasis differences
+• Cross-curricular integration differences
+• Technology integration requirements
 
-MANDATORY 35 CATEGORIES TO ANALYZE IN DETAIL:
+MANDATORY 50 CATEGORIES TO ANALYZE IN BULLET POINT FORMAT:
 
 {chr(10).join([f"{i+1}. {cat}" for i, cat in enumerate(comprehensive_categories)])}
 
@@ -379,18 +402,25 @@ RESPONSE FORMAT - Respond ONLY with valid JSON:
 {{
   "categories": [
     {{
-      "name": "Programme Structure & Year Classifications",
-      "fromBoardContent": "4-5 extremely detailed paragraphs about {from_board} programme structure with specific examples for {grade} {subject}, costs, assessment details, and practical implications...",
-      "toBoardContent": "4-5 extremely detailed paragraphs about {to_board} programme structure with specific examples for {grade} {subject}, costs, assessment details, and practical implications..."
+      "name": "Syllabus Comparison",
+      "fromBoardContent": "• Specific detailed bullet point about {from_board} syllabus for {grade} {subject}\\n• Another detailed bullet point with specific examples and practical implications\\n• Continue with 8-10 bullet points covering all syllabus aspects...",
+      "toBoardContent": "• Specific detailed bullet point about {to_board} syllabus for {grade} {subject}\\n• Another detailed bullet point with specific examples and practical implications\\n• Continue with 8-10 bullet points covering all syllabus aspects..."
+    }},
+    {{
+      "name": "Educational Philosophy & Approach",
+      "fromBoardContent": "• Detailed bullet point about {from_board} educational philosophy\\n• Another bullet point with specific examples\\n• Continue with 8-10 bullet points...",
+      "toBoardContent": "• Detailed bullet point about {to_board} educational philosophy\\n• Another bullet point with specific examples\\n• Continue with 8-10 bullet points..."
     }}
-    // CONTINUE FOR ALL 35 CATEGORIES
+    // CONTINUE FOR ALL 50 CATEGORIES
   ]
 }}
 
-DO NOT OUTPUT ANYTHING OTHER THAN VALID JSON. NO EXPLANATIONS. NO SUMMARIES. GENERATE ALL 35 CATEGORIES WITH EXTREMELY DETAILED CONTENT FOR 25,000+ WORD TOTAL ANALYSIS."""
+IMPORTANT: You MUST generate ALL 50 categories. Do not skip any categories. Each category should have detailed bullet point content for both boards.
+
+DO NOT OUTPUT ANYTHING OTHER THAN VALID JSON. NO EXPLANATIONS. NO SUMMARIES. GENERATE ALL 50 CATEGORIES WITH BULLET POINTS ONLY."""
 
     try:
-        print(f"Generating extremely comprehensive comparison with all 35 categories for {from_board} vs {to_board}...")
+        print(f"Generating comprehensive comparison with bullet points for {from_board} vs {to_board}...")
         
         # Call Claude API with increased timeout for comprehensive response
         response_text = call_claude_api(comprehensive_prompt)
@@ -409,23 +439,16 @@ DO NOT OUTPUT ANYTHING OTHER THAN VALID JSON. NO EXPLANATIONS. NO SUMMARIES. GEN
             
             print(f"Successfully generated {len(categories)} categories from Claude API")
             
-            # If we got fewer than 35 categories, generate fallback for missing ones
-            if len(categories) < 10:  # Reduced threshold for better reliability
+            # If we got fewer than 20 categories, generate fallback for missing ones
+            if len(categories) < 20:
                 print(f"Only received {len(categories)} categories, generating fallback categories...")
                 
-                # Add fallback categories for essential comparisons
-                essential_categories = [
-                    'Educational Philosophy & Approach',
-                    'Programme Structure & Year Classifications',
-                    'Assessment Methods & Grading Systems',
-                    'Cost Implications & Financial Requirements',
-                    'University Recognition & Pathways'
-                ]
+                # Add fallback categories for essential comparisons including all comprehensive categories
+                missing_categories = [cat for cat in comprehensive_categories if not any(existing_cat.get('name') == cat for existing_cat in categories)]
                 
-                # Add missing essential categories
-                for category in essential_categories:
-                    if not any(cat.get('name') == category for cat in categories):
-                        categories.append(generate_comprehensive_fallback_category(category, from_board, to_board, grade, subject))
+                # Add missing categories up to ensure comprehensive coverage
+                for category in missing_categories[:30]:  # Generate up to 30 fallback categories
+                    categories.append(generate_comprehensive_fallback_category(category, from_board, to_board, grade, subject))
                 
             print(f"Final result: {len(categories)} categories generated")
             
@@ -436,8 +459,8 @@ DO NOT OUTPUT ANYTHING OTHER THAN VALID JSON. NO EXPLANATIONS. NO SUMMARIES. GEN
                 'subject': subject,
                 'categories': categories,
                 'totalCategories': len(categories),
-                'analysisDepth': f'Comprehensive {len(categories)}-category analysis',
-                'wordCount': f'Approximately {len(categories) * 800}+ words'
+                'analysisDepth': f'Comprehensive {len(categories)}-category analysis with bullet points',
+                'wordCount': f'Approximately {len(categories) * 800}+ words in bullet format'
             }
             
         except json.JSONDecodeError as json_error:
@@ -453,7 +476,7 @@ DO NOT OUTPUT ANYTHING OTHER THAN VALID JSON. NO EXPLANATIONS. NO SUMMARIES. GEN
         return generate_complete_comprehensive_fallback(from_board, to_board, grade, subject, comprehensive_categories)
 
 def generate_comprehensive_fallback_category(category_name, from_board, to_board, grade, subject):
-    """Generate extremely detailed fallback content for a single category with comprehensive board-specific details"""
+    """Generate extremely detailed fallback content for a single category with bullet points"""
     
     # Comprehensive board-specific details and terminology
     board_comprehensive_details = {
@@ -517,16 +540,62 @@ def generate_comprehensive_fallback_category(category_name, from_board, to_board
     from_details = board_comprehensive_details.get(from_board, board_comprehensive_details['CBSE'])
     to_details = board_comprehensive_details.get(to_board, board_comprehensive_details['IB'])
     
+    # Generate bullet points for Syllabus Comparison category
+    if category_name == 'Syllabus Comparison':
+        from_content = f"""• {from_board} {subject} syllabus for {grade} emphasizes {from_details['terminology']} with structured curriculum progression
+• Topic coverage includes foundational concepts with gradual complexity building appropriate for {grade} level students
+• Assessment weightage follows {from_details['grading']} with specific marking schemes for each topic area
+• Practical components integrated as per {from_details['exams']} requirements with hands-on learning emphasis
+• Cross-curricular connections made with other subjects to enhance understanding and application of {subject} concepts
+• Mathematical complexity level maintained at grade-appropriate standards with step-by-step skill development approach
+• Real-world applications embedded throughout curriculum to connect theoretical concepts with practical scenarios
+• Technology integration requirements include digital tools and resources as specified by board guidelines
+• Chapter sequencing follows logical progression from basic to advanced concepts with clear learning outcomes
+• Depth of coverage balanced with breadth to ensure comprehensive understanding while meeting time constraints"""
+        
+        to_content = f"""• {to_board} {subject} curriculum for {grade} utilizes {to_details['terminology']} with international standards alignment
+• Topic coverage emphasizes inquiry-based learning with conceptual understanding prioritized over rote memorization
+• Assessment follows {to_details['grading']} with criterion-referenced evaluation measuring student achievement against standards
+• Practical work integrated through {to_details['exams']} with extensive laboratory and field work components
+• Global perspectives woven throughout curriculum connecting local {subject} concepts to international contexts
+• Mathematical rigor maintained at internationally competitive levels with problem-solving skills emphasis
+• Real-world applications central to curriculum design with authentic assessment tasks and project-based learning
+• Technology integration mandatory with digital literacy skills developed alongside {subject} content knowledge
+• Unit organization follows thematic approach with interdisciplinary connections and holistic learning experiences
+• Depth prioritized over breadth with fewer topics covered in greater detail to ensure mastery"""
+    else:
+        # Generate bullet points for other categories
+        from_content = f"""• {from_board} approach to {category_name.lower()} incorporates {from_details['terminology']} methodology
+• Implementation strategy focuses on {from_details['structure']} with age-appropriate content delivery
+• Assessment methodology utilizes {from_details['grading']} ensuring fair evaluation of student progress
+• Professional requirements include {from_details['teachers']} with ongoing development and training
+• Financial investment involves {from_details['costs']} making education accessible to diverse backgrounds
+• Recognition benefits include {from_details['recognition']} providing pathways to higher education
+• Examination schedule follows {from_details['sessions']} with structured timeline and preparation periods
+• Quality assurance maintained through regular monitoring and feedback mechanisms for continuous improvement
+• Support systems provided for students, teachers, and parents ensuring successful educational outcomes
+• Implementation timeline allows adequate preparation and transition periods for all stakeholders involved"""
+        
+        to_content = f"""• {to_board} framework for {category_name.lower()} emphasizes {to_details['terminology']} with international best practices
+• Programme structure follows {to_details['structure']} ensuring seamless progression across educational levels
+• Evaluation system uses {to_details['grading']} with criterion-referenced assessment measuring individual growth
+• Professional development requires {to_details['teachers']} with mandatory certification and ongoing training
+• Investment requirements include {to_details['costs']} reflecting premium international education standards
+• Global recognition provides {to_details['recognition']} with direct pathways to prestigious universities worldwide
+• Assessment timeline includes {to_details['sessions']} with flexible scheduling and multiple opportunities
+• Quality control maintained through international standards alignment and regular external moderation processes
+• Comprehensive support provided through dedicated counseling, academic guidance, and pastoral care systems
+• Strategic implementation ensures smooth transition with detailed preparation and orientation programmes"""
+    
     return {
         'name': category_name,
-        'fromBoardContent': f"The {from_board} approach to {category_name.lower()} represents a comprehensive educational framework specifically designed for {grade} {subject} students that incorporates {from_details['terminology']} and utilizes {from_details['grading']}. This methodology incorporates evidence-based practices developed through extensive research and practical implementation across diverse educational settings, emphasizing systematic progression of learning objectives while maintaining flexibility to accommodate different learning styles, individual student paces, and varying institutional contexts. Regular assessment and monitoring mechanisms ensure educational goals are consistently met while identifying areas for improvement and enrichment opportunities that align with the board's pedagogical philosophy and assessment standards.\n\nThe pedagogical strategies employed focus on active learning methodologies that encourage student participation, engagement, and ownership of the learning process through various instructional approaches including collaborative learning, problem-based learning, inquiry-based instruction, and differentiated teaching methods. The assessment philosophy incorporates {from_details['exams']} providing meaningful, timely feedback to students and educators, enabling continuous improvement and adaptation of teaching strategies while maintaining consistency with board expectations. The programme structure follows {from_details['structure']} ensuring age-appropriate curriculum delivery and developmental progression.\n\nFinancially, families investing in {from_board} education can expect {from_details['costs']}, making it accessible to various socio-economic backgrounds while maintaining quality educational standards. The system emphasizes critical thinking skills development, analytical reasoning, and practical application of knowledge gained in {subject}, consistently encouraging students to connect theoretical concepts with real-world scenarios. This promotes deeper understanding, long-term retention of learning materials, and transfer of skills to new contexts that prepare students for future academic and professional success.\n\nThe implementation strategy includes comprehensive teacher training where {from_details['teachers']}, ongoing professional development, resource allocation, and quality assurance mechanisms ensuring consistent delivery of high-quality education across participating institutions. The programme provides {from_details['recognition']}, offering students pathways to higher education and career opportunities. Regular curriculum review, stakeholder feedback, and alignment with educational standards maintain programme relevance and effectiveness while ensuring students receive contemporary education meeting current and future needs.",
-        
-        'toBoardContent': f"The {to_board} framework for {category_name.lower()} is built upon international best practices and global educational standards that emphasize student-centered learning approaches, critical inquiry, and holistic development. This comprehensive system is specifically designed for {grade} {subject} to foster independent thinking, creativity, collaborative skills, and global citizenship essential for success in the modern interconnected world. The curriculum framework incorporates {to_details['terminology']} and utilizes {to_details['grading']} encouraging students to explore, question, investigate, and discover knowledge through guided exploration, hands-on experiences, and authentic real-world applications.\n\nThe pedagogical strategies emphasize active, experiential learning through hands-on experiences, collaborative projects, research-based assignments, and real-world problem-solving activities specifically relevant to {subject} in {grade}. Students are encouraged to take ownership of their learning journey while developing essential 21st-century skills including communication, collaboration, creativity, critical thinking, and digital literacy. The assessment philosophy focuses on {to_details['exams']} measuring student achievement against clearly defined international learning standards rather than comparative peer performance, promoting individual growth, development, and mastery of essential competencies.\n\nThe financial investment in {to_details['costs']} reflects the premium nature of international education and comprehensive support systems provided. The international perspective embedded throughout ensures students develop global awareness, cultural competency, and intercultural understanding necessary for success in an increasingly interconnected world. The programme emphasizes multilingual development, cross-cultural communication, and global citizenship preparing students for international mobility and global career opportunities while maintaining high academic standards and rigorous assessment criteria.\n\nThe implementation strategy includes rigorous teacher training where {to_details['teachers']}, ongoing professional development, comprehensive resource provision, and continuous quality assurance ensuring consistent delivery of high-quality international education. Students benefit from {to_details['recognition']}, providing premium pathways to top universities worldwide through established recognition agreements and transfer protocols. Regular curriculum reviews, international benchmarking, stakeholder feedback, and alignment with global educational research ensure the programme remains innovative, effective, and responsive to changing educational needs and global trends while maintaining its position as a leader in international education excellence."
+        'fromBoardContent': from_content,
+        'toBoardContent': to_content
     }
 
 def generate_complete_comprehensive_fallback(from_board, to_board, grade, subject, categories):
     """Generate complete comprehensive fallback data when Claude API fails"""
-    print("Generating complete comprehensive fallback comparison with all 35 categories including detailed Programme Structure...")
+    print("Generating complete comprehensive fallback comparison with bullet points...")
     
     fallback_categories = []
     for category in categories:
@@ -539,14 +608,15 @@ def generate_complete_comprehensive_fallback(from_board, to_board, grade, subjec
         'subject': subject,
         'categories': fallback_categories,
         'totalCategories': len(fallback_categories),
-        'analysisDepth': 'Complete comprehensive fallback with all 35 categories including detailed Programme Structure',
-        'wordCount': 'Approximately 25,000+ words',
-        'note': 'Comprehensive fallback comparison generated with all key differences and detailed programme structure analysis'
+        'analysisDepth': 'Complete comprehensive fallback with bullet points and Syllabus Comparison',
+        'wordCount': 'Approximately 25,000+ words in bullet format',
+        'note': 'Comprehensive fallback comparison generated with bullet points and detailed syllabus comparison'
     }
 
 def generate_fallback_comparison(from_board, to_board, grade, subject):
     """Generate fallback comparison when Claude API fails"""
     return generate_complete_comprehensive_fallback(from_board, to_board, grade, subject, [
+        'Syllabus Comparison',
         'Educational Philosophy & Approach',
         'Programme Structure & Year Classifications', 
         'Assessment Methods & Grading Systems',
@@ -715,4 +785,4 @@ if __name__ == '__main__':
     print("  /reviews - User reviews and testimonials")
     print("  /comparison-result - Detailed comparison results")
     print("\nStarting server on http://localhost:5002")
-    app.run(debug=True, host='0.0.0.0', port=5002)
+    app.run(debug=True, host='0.0.0.0', port=5005)
